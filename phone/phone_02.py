@@ -1,8 +1,5 @@
-"""
-龙腾测试dev课程，通讯录程序
-实现一个简单的通讯录，包含增删改查
+import json
 
-"""
 record_list = []
 record_id = 0
 
@@ -31,6 +28,7 @@ def query_record(name):
             query_ids.append(record["record_id"])
             query_result.append(record)
     return query_ids, query_result
+
 
 def delete_record(name):
     query_ids, query_result = query_record(name)
@@ -86,7 +84,24 @@ def change_record(name):
             query_result[0]["phone_number"] = phone_number
             print("修改成功")
 
+
+def phonebook_save(L):
+    with open("/tmp/data.dat", "w") as f:
+        json.dump(L, f)
+
+
+def phonebook_load():
+    global record_list
+    with open("/tmp/data.dat", "r") as f:
+        record_list = json.load(f)
+        global record_id
+        record_id = record_list[-1]["record_id"]
+
 if __name__ == "__main__":
+    try:
+        phonebook_load()
+    except Exception:
+        print("数据文件不存在")
     while True:
         menu = """
         通讯录
@@ -118,12 +133,8 @@ if __name__ == "__main__":
                 name = input("请输入姓名:")
                 change_record(name)
             if s == "5":
+                phonebook_save(record_list)
                 break
         else:
             print("输入错误")
             continue
-
-
-
-
-
