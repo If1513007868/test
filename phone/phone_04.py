@@ -1,7 +1,15 @@
+"""
+通讯录程序
+实现一个简单的通讯录，包含增删改查
+"""
+
+import pickle
+
+
 class Record:
     global_id = 0
 
-    def __init__(self,name,phone_number):
+    def __init__(self, name, phone_number):
         self.name = name
         self.phone_number = phone_number
         Record.global_id += 1
@@ -10,10 +18,9 @@ class Record:
     def set_number(self, phone_number):
         self.phone_number = phone_number
 
-
-
     def __str__(self):
         return "{}\t{}\t{}".format(self.record_id, self.name, self.phone_number)
+
 
 class PhoneBook:
 
@@ -23,8 +30,6 @@ class PhoneBook:
     def add_record(self, record):
         self.data.append(record)
 
-
-
     def query_record(self, name):
         query_result = []
         query_ids = []
@@ -33,8 +38,6 @@ class PhoneBook:
                 query_result.append(record)
                 query_ids.append(record.record_id)
         return query_ids, query_result
-
-
 
     def change_record(self, name):
         query_ids, query_result = self.query_record(name)
@@ -52,10 +55,6 @@ class PhoneBook:
                             record.set_number(phone_number)
                             print("修改成功")
                             break
-
-
-
-
                 else:
                     print("输入错误!!!")
             else:
@@ -63,7 +62,6 @@ class PhoneBook:
                 phone_number = input("请输入修改后的电话号码:")
                 query_result[0].set_number(phone_number)
                 print("修改成功")
-
 
     def delete_record(self, name):
         query_ids, query_result = self.query_record(name)
@@ -93,9 +91,25 @@ class PhoneBook:
                     else:
                         print("输入错误!!!")
 
+    def save(self):
+        with open("/tmp/data.dat", "wb") as f:
+            pickle.dump(self.data, f)
+
+    def load(self):
+        with open("/tmp/data.dat", "rb") as f:
+            self.data = pickle.load(f)
+
 
 if __name__ == "__main__":
     phonebook = PhoneBook()
+    try:
+        phonebook.load()
+        Record.global_id = phonebook.data[-1].record_id
+    except Exception:
+        print("数据文件不存在")
+
+
+
     while True:
         menu = """
         1. 添加
@@ -116,31 +130,21 @@ if __name__ == "__main__":
                 print(record)
             if s == "2":
                 name = input("请输入姓名:")
-                query_ids,query_result = phonebook.query_record(name)
+                query_ids, query_result = phonebook.query_record(name)
                 if len(query_ids) == 0:
                     print("不存在")
                 else:
                     for record in query_result:
-                        print("{}\t{}\t{}".format(record.record_id,record.name,record.phone_number))
+                        print("{}\t{}\t{}".format(record.record_id, record.name, record.phone_number))
             if s == "3":
                 name = input("请输入姓名:")
                 phonebook.delete_record(name)
-
+            if s == "4":
+                name = input("请输入姓名:")
+                phonebook.change_record(name)
             if s == "5":
+                phonebook.save()
                 break
         else:
             print("输入错误")
             continue
-
-
-
-
-
-
-
-
-
-
-
-
-
