@@ -14,6 +14,8 @@ class Student():
 
 
 
+
+
     def do_homework(self):   #实例关联的是对象
         self.__class__.sum += 1
         # print('班级人数总数' + str(self.__class__.sum))
