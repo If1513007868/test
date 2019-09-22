@@ -1,39 +1,42 @@
 """
 龙腾测试dev课程，通讯录程序
 实现一个简单的通讯录，包含增删改查
+Python顺序执行
 
 """
-record_list = []
-record_id = 0
+record_list = []  #定义一个列表，存取数据
+
+record_id = 0          #定义一个ID，防止重名
 
 
 def input_record():
     name = input("请输入姓名:")
     phone_number = input("请输入电话:")
-    record = {"name": name, "phone_number": phone_number}
+    record = {"name": name, "phone_number": phone_number}   #字典构建一条记录
     return record
 
 
 def add_record():
-    record= input_record()
-    global record_id
+    record= input_record()  #调取输入功能
+    global record_id    #全局变量
     record_id += 1
-    record["record_id"] = record_id
-    record_list.append(record)
+    record["record_id"] = record_id   #会生成3个key,id name,number
+    record_list.append(record)   #将这个记录加入列表
     return "添加成功"
 
 
 def query_record(name):
-    query_result = []
-    query_ids = []
-    for record in record_list:
+    query_result = []  #空的查询结果
+    query_ids = []   #用来存查询的结果
+    for record in record_list:    #便利
         if record["name"] == name:
-            query_ids.append(record["record_id"])
+            query_ids.append(record["record_id"])     #将结果放到
             query_result.append(record)
     return query_ids, query_result
 
 def delete_record(name):
     query_ids, query_result = query_record(name)
+
     if len(query_ids) == 0:
         print("不存在")
     else:

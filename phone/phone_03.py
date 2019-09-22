@@ -1,7 +1,7 @@
 class Record:
     global_id = 0
 
-    def __init__(self,name,phone_number):
+    def __init__(self,name,phone_number):   #方法
         self.name = name
         self.phone_number = phone_number
         Record.global_id += 1

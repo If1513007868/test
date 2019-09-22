@@ -1,5 +1,5 @@
 import json
-
+#长安Ctrl，指向
 record_list = []
 record_id = 0
 
@@ -85,7 +85,7 @@ def change_record(name):
             print("修改成功")
 
 
-def phonebook_save(L):
+def phonebook_save(L: object):
     with open("/tmp/data.dat", "w") as f:
         json.dump(L, f)
 
