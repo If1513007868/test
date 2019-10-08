@@ -30,7 +30,7 @@ dirs = os.listdir(path)
 for file in dirs:
     print(file)
 print("   ")
-print("-------------创建目录 os.mkdir("te")------------------")
+print("-------------创建目录 os.mkdir("")------------------")
 #os.mkdir() 方法用于以数字权限模式创建目录。默认的模式为 0777 (八进制)。
 #mkdir()方法语法格式如下：os.mkdir(path[, mode])
 #os.mkdir(path[, mode])    path -- 要创建的目录   mode -- 要为目录设置的权限数字模式
