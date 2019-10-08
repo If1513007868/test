@@ -23,7 +23,50 @@ def add_record():
     record_id += 1
     record['record_id'] = record_id
     record_list.append(record)
+    print(record_list)  #打印存储的信息
     return "添加成功"
+
+def query_record(name):
+    query_result = []
+    query_ids = []
+    for record in record_list:
+        if record["name"] == name:
+            query_ids.append(record["record_id"])  # 将结果放到
+            query_result.append(record)
+    return query_ids, query_result
+
+def delete_record(name):
+    query_ids, query_result = query_record(name)
+    if len(query_ids) == 0:
+        print("不存在")
+    else:
+        if len(query_ids) > 1:
+            for record in query_result:
+                print("{}\t{}\t{}".format(record["record_id"], record["name"], record["phone_number"]))
+            record_id = input("请选择要删除的id:")
+            if int(record_id) in query_ids:
+                for record in record_list:
+                    if int(record_id) == record["record_id"]:
+                        record_list.remove(record)
+            else:
+                print("输入错误!!!")
+        else:
+            print("{}\t{}\t{}".format(query_result[0]["record_id"], query_result[0]["name"],query_result[0]["phone_number"]))
+            while True:
+                s = input("是否确认删除(Y/N):")
+                if s in ["Y","N"]:
+                    if s == "Y":
+                        record_list.remove(query_result[0])
+                    else:
+                        pass
+                    break
+                else:
+                    print("输入错误!!!")
+
+
+
+    
+
 
 if __name__ == "__main__":
 
@@ -42,6 +85,21 @@ if __name__ == "__main__":
             if s == "1":
                 msg = add_record()
                 print(msg)
-            else:
-                print("输入错误")
-                continue
+
+            if s == "2":
+                name = input("请输入姓名:")
+                query_ids, query_result = query_record(name)
+                if len(query_ids) == 0:
+                    print("不存在")
+                else:
+                    for record in query_result:
+                        print("{}\t{}\t{}".format(record["record_id"], record["name"], record["phone_number"]))
+
+            if s == "3":
+                name = input("请输入姓名:")
+                delete_record(name)
+            if s == "5":
+                break
+        else:
+            print("输入错误")
+            continue

@@ -3,8 +3,8 @@ import requests,time
 
 start = time.time()
 
-count = 10000
-num = 500
+count = 100
+num = 50
 url = "http://www.cdfanfan.com/"
 lock = threading.Lock()
 q = queue.Queue()
