@@ -8,3 +8,6 @@
 # 的getSize（）获取文件的大小 os.path.getsize(path)
 # ISFILE（）检测是否是文件 os.path.isfile(path)
 # isdir() 检测是否是文件夹 os.path.isdir(path)
+
+
+

@@ -46,8 +46,8 @@ import requests,time
 
 start = time.time()
 
-count = 1000
-num = 2
+count = 100
+num = 50
 url = 'http://www.baidu.com'
 
 lock = threading.Lock()
@@ -84,6 +84,6 @@ for t in threads:
 end = time.time()
 t = end - start
 print("time %d" %  t)
-print("time\t{}".format(t))
+print("time\t{:.0f}".format(t))
 for item in result:
     print("status_code[%s]: %d" % (item, result.get(item)))
