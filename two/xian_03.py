@@ -1,35 +1,80 @@
 import threading,queue
 import requests,time
 
+# start = time.time()
+#
+# count =100
+# num = 2
+# url = "http://www.cdfanfan.com"
+#
+# lock = threading.Lock()
+# q = queue.Queue()
+# threads = []
+# result = {}
+#
+# def get_content(url):
+#     while True:
+#         try:
+#             q.get(block=False)
+#         except queue.Empty:
+#             break
+#         r = requests.get(url)
+#         with lock:
+#             try:
+#                 result[r.status_code] = result.setdefault(r.status_code, 0) + 1
+#             except:
+#                 result["error"] = result.setdefault("error", 0) + 1
+#
+# for i in range(count):
+#     q.put(i)
+# for i in range(num):
+#     t = threading.Thread(target=get_content,args=(url,))
+#     threads.append(t)
+#     t.start()
+#
+# for t in threads:
+#     t.join()
+#
+#
+# end = time.time()
+# t = end - start
+#
+# print("time{}".format(t))
+# for item in result:
+#     print("status_code[%s]: %d" % (item, result.get(item)))
+#
+
 start = time.time()
 
-count = 100
-num = 50
-url = "http://www.cdfanfan.com/"
+count = 1000
+num = 2
+url = 'http://www.baidu.com'
+
 lock = threading.Lock()
 q = queue.Queue()
 threads = []
 result = {}
 
+
 def get_content(url):
     while True:
         try:
-            q.get(block = False)
+            q.get(block=False)
         except queue.Empty:
             break
         r = requests.get(url)
         with lock:
             try:
-                result[r.status_code] = result.setdefault(r.status_code,0) + 1
-            except:
-                result["error"] = result.setdefault("error",0) + 1
-# for i in range(count):
-#     q.put(i)
+                result[r.status_code] = result.setdefault(r.status_code, 0) + 1
+            except :
+                result["error"] = result.setdefault("error", 0) + 1
+
+
 for i in range(count):
     q.put(i)
 
 for i in range(num):
-    t = threading.Thread(target=get_content,args=(url,))
+    t = threading.Thread(target=get_content, args=(url,))
     threads.append(t)
     t.start()
 
@@ -38,7 +83,7 @@ for t in threads:
 
 end = time.time()
 t = end - start
-print("time %d" % t)
+print("time %d" %  t)
+print("time\t{}".format(t))
 for item in result:
     print("status_code[%s]: %d" % (item, result.get(item)))
-
