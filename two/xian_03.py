@@ -47,8 +47,8 @@ import requests,time
 start = time.time()
 
 count = 100
-num = 50
-url = 'http://www.baidu.com'
+num = 50   #并发数
+url = 'http://www.baidu.com'  #
 
 lock = threading.Lock()
 q = queue.Queue()
@@ -79,7 +79,7 @@ for i in range(num):
     t.start()
 
 for t in threads:
-    t.join()
+    t.join()   #所有的线程结束，join结束
 
 end = time.time()
 t = end - start
