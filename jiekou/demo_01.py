@@ -15,3 +15,5 @@ print("cookie               ",r.cookies)
 #print(r.json())    #内置的json解码器
 print(r.raw)      #返回原始响应体
 print(r.raise_for_status())    #失败请求非200抛出异常
+
+#Python 报错  导入urllib3    urllib3.disable_warnings()
