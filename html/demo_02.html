@@ -3,19 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        p{
-            color: firebrick;
-            text-align:;
-        }
-        ul
-
-
-    </style>
+   <style>
+.red {
+    color: red;
+}
+</style>
 </head>
 <body>
-<p>Hello World!</p>
-<p>这个段落采用CSS样式化。</p>
+<div id="test">
+
+<table id="test-table">
+  <tr class="red">
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr>
+</table>
+</div>
+<p id="p-id">innerhtml</p>
+
+<script>
+var p = document.getElementById('p-id');
+// 设置文本为abc:
+p.innerHTML = 'ABC'; // <p id="p-id">ABC</p>
+// 设置HTML:
+p.innerHTML = 'ABC <span style="color:red">RED</span> XYZ';
+
+</script>
 
 
 </body>
