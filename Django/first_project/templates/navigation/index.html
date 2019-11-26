@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-{% load staticfiles %} <!-- 新增 -->    <!--#告诉 Django 模板引擎，我们将在模板中使用静态文 件
+{% load staticfiles %}   <!--#告诉 Django 模板引擎，我们将在模板中使用静态文 件
 这样便可以在模板中使用 static 模板标签引入静态目录中的文件 -->
-<html lang="en">
+<html>
 <head>
 <title>navigation</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="{% static "css/12.css" %}" />
+    <link rel = "stylesheet" href="{% static "css/12.css" %}"/>
     <!-- JavaScript -->
-    <script src="{% static "js/12.js" %}"> </script>
-</head>
+    <script src="{% static "js/12.js" %}"> </script></head>
 
 <body>
 <h1>django says...</h1>
@@ -18,9 +17,10 @@
     <strong>{{ boldmessage }}</strong><br />  <!--#应用views.py中的模板变量boldmessage，使用双大括号-->
 </div>
 <div>
-<a href="/navigation/about/">关于</a> <br />
-    <img src="{% static "images/75.jpg" %}"
-           alt="Picture of django" />
+
+<a href="/navigation/about">关于</a><br />
+<img src="{% static "images/75.jpg" %}"alt="Picture of django" />
+
     <!-- 新增      {% static "images/ django.jpg" %} 告诉 Django，我们想显示静态目录中名为
            images/django.jpg 的图像。 static 标签会在images/django.jpg
            前加上 STATIC_URL 指定的 URL，得到 /static/images/django.jpg-->
@@ -29,4 +29,10 @@
 
 </body>
 </html>
+
+
+
+
+
+
 
